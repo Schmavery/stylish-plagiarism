@@ -1,4 +1,52 @@
-import string, random
+import cgi, webapp2, string, random
+
+class MainPage(webapp2.RequestHandler):
+    def get(self):
+        self.response.out.write("""
+          <html>
+            <body>
+              <h1>Prime Number Calculator</h1>
+              <form action="/results" method="post">
+                <div><input name="number" ></div>
+                <div><input type="submit" value="Calculate"></div>
+              </form>
+            </body>
+          </html>""")
+
+class Calculate(webapp2.RequestHandler):
+    def post(self):
+        x = self.request.get('number')
+        x = int(x)
+        list = []
+        factors = []
+        for i in range(1,(x+1)):
+            list.append(i)
+            
+        for n in range(0,x):
+            for m in range(0,x):
+                
+                ans = list[m] * list[n]
+                if ans == x:
+                    factors.append(list[m])
+
+        self.response.out.write("""
+            <p>The factors of x are:<br>""")
+        self.response.out.write(factors)
+
+
+app = webapp2.WSGIApplication([('/', MainPage),
+                              ('/results', Calculate)],
+                              debug=True)
+
+
+
+
+
+
+
+
+
+
 
 thesFile = open("thesaurus.txt")
 
