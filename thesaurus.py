@@ -5,7 +5,7 @@ class MainPage(webapp2.RequestHandler):
         self.response.out.write("""
           <html>
             <body>
-              <h1>Prime Number Calculator</h1>
+              <h1>The Stylish Plagiarizer</h1>
               <form action="/results" method="post">
                 <div><input name="number" ></div>
                 <div><input type="submit" value="Calculate"></div>
@@ -13,7 +13,7 @@ class MainPage(webapp2.RequestHandler):
             </body>
           </html>""")
 
-class Calculate(webapp2.RequestHandler):
+class Compute(webapp2.RequestHandler):
     def post(self):
         x = self.request.get('number')
         x = int(x)
@@ -35,7 +35,7 @@ class Calculate(webapp2.RequestHandler):
 
 
 app = webapp2.WSGIApplication([('/', MainPage),
-                              ('/results', Calculate)],
+                              ('/results', Compute)],
                               debug=True)
 
 
